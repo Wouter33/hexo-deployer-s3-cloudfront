@@ -1,6 +1,6 @@
 {
   "name": "hexo-deployer-s3-cloudfront",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Amazon S3 and Cloudfront deployer plugin for Hexo",
   "main": "index",
   "keywords": [
@@ -39,11 +39,13 @@
     "hexo": "3.x"
   },
   "dependencies": {
+    "async": "^2.4.0",
     "chalk": "^1.0.0",
+    "cloudfront": "^0.3.3",
     "level": "^1.4.0",
+    "lodash": "^4.17.4",
     "readdirp": "^0.3.3",
-    "s3-sync-aws": "^1.1.0",
-    "cloudfront": "^0.3.3"
+    "s3-sync-aws": "^1.1.0"
   },
   "readme": "# hexo-deployer-s3-cloudfront\n\nAmazon S3 and Cloudfront deployer plugin for [Hexo](http://hexo.io/). Based on Josh Strange's orginial plugin.\n\n## Installation\n\n``` bash\n$ npm install hexo-deployer-s3-cloudfront --save\n```\n\n## Usage\n\nAdd the plugin in the plugins list in `_config.yml`:\n\n```plugins:\n- hexo-deployer-s3-cloudfront\n```\n\nand configure the plugin in the same file with:\n\n``` yaml\n# You can use this:\ndeploy:\n  type: s3-cloudfront\n  bucket: <S3 bucket>\n  aws_key: <AWS id key>  // Optional, if the environment variable `AWS_KEY` is set\n  aws_secret: <AWS secret key>  // Optional, if the environment variable `AWS_SECRET` is set\n  concurrency: <number of connections> // Optional\n  region: <region>  // Optional, default: us-standard\n  cf_distribution: <cloudfront distribution> // Which distribution should be invalidated?\n```\n\n## Contributors\n\n- Wouter van Lent ([wouter33](https://github.com/wouter33))\n- Josh Strange ([joshstrange](https://github.com/joshstrange); original implementation)\n\n## License\n\nMIT\n",
   "readmeFilename": "README.md",
