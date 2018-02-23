@@ -32,6 +32,46 @@ deploy:
   cf_distribution: <cloudfront distribution> // Optional: Which distribution should be invalidated?
   headers: <headers in JSON format> // pass any headers to S3, usefull for metadata cache setting of Hexo assets
 ```
+
+NOTE: If you are switching from hexo-deployer-s3, note that the environment variables changed.
+NOTE: cf_distribution should be all-caps and about 14 characters with no domain - don't include the cloudfront.net
+NOTE: You'll want to add cloudfront permissions to the policy used to deploy the site:
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::example.com"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::example.com/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudfront:CreateInvalidation",
+                "cloudfront:GetInvalidation",
+                "cloudfront:ListInvalidations",
+                "cloudfront:UnknownOperation"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
 #### Example: header Cache-Control
 
 ``` yaml
